@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: grocery_booking_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root_password
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
